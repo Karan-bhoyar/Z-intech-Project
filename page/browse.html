@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Ideas - PitchDeck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeUp {
+      0% { transform: translateY(30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .animate-bounceIn {
+      animation: bounceIn 1s ease;
+    }
+
+    .animate-fadeUp {
+      animation: fadeUp 1.2s ease both;
+    }
+
+    /* Subtle card glow */
+    .card-glow {
+      position: relative;
+    }
+
+    .card-glow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(168,85,247,0.3), rgba(79,70,229,0.3));
+      border-radius: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: -1;
+      filter: blur(25px);
+    }
+
+    .card-glow:hover::before {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-cover bg-center relative text-white" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1950&q=80');">
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+
+  <!-- 🌟 Navigation Bar -->
+  <nav class="fixed top-0 w-full z-20 bg-white/10 backdrop-blur-md border-b border-white/20 shadow-sm">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <span class="text-2xl">🚀</span>
+        <h1 class="text-xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 bg-clip-text text-transparent">
+          PitchDeck
+        </h1>
+      </div>
+
+      <!-- Nav Links -->
+      <div class="flex space-x-6 text-sm font-semibold">
+        <a href="../index.html" class="hover:text-purple-400 transition-colors">Home</a>
+        <a href="../pitch.html" class="hover:text-pink-400 transition-colors">Submit Idea</a>
+        <a href="../about.html" class="hover:text-orange-400 transition-colors">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="relative z-10 flex flex-col items-center justify-start min-h-screen py-28 px-6">
+
+    <!-- Hero Section -->
+    <header class="text-center mb-12 px-4 animate-bounceIn">
+      <h1 class="text-5xl font-extrabold mb-4 bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 bg-clip-text text-transparent">
+        Discover Innovative Startups
+      </h1>
+      <p class="text-lg md:text-xl max-w-3xl mx-auto mb-6 text-gray-200">
+        Explore visionary ideas shaping the future. Connect with founders, investors, and dreamers to build what’s next.
+      </p>
+      
+    </header>
+
+    <!-- Startup Cards -->
+<!-- Startup Cards -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-6xl px-4">
+
+  <!-- Card 1 -->
+  <div class="card-glow bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-lg hover:shadow-purple-500/30 transition-all duration-500 flex flex-col justify-between animate-fadeUp">
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-purple-300">Startup Alpha</h2>
+      <p class="mb-4 text-gray-200">Connecting local artisans with global buyers using blockchain-powered trust.</p>
+      <h3 class="font-semibold text-white mb-1">Team Members:</h3>
+      <ol class="list-decimal list-inside text-gray-300 text-sm space-y-1">
+        <li>Alice Johnson</li>
+        <li>Bob Smith</li>
+        <li>Charlie Lee</li>
+        <li>David Kim</li>
+        <li>Eve Williams</li>
+      </ol>
+    </div>
+    <a href="alpha.html"
+       class="mt-6 bg-gradient-to-r from-purple-600 to-fuchsia-500 hover:from-purple-700 hover:to-fuchsia-600 text-white py-2 px-5 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 text-center">
+      Learn More →
+    </a>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card-glow bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-lg hover:shadow-green-400/30 transition-all duration-500 flex flex-col justify-between animate-fadeUp" style="animation-delay: 0.2s;">
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-green-300">GreenTech Hub</h2>
+      <p class="mb-4 text-gray-200">Creating sustainable energy and eco-friendly solutions for modern cities.</p>
+      <h3 class="font-semibold text-white mb-1">Team Members:</h3>
+      <ol class="list-decimal list-inside text-gray-300 text-sm space-y-1">
+        <li>Frank Miller</li>
+        <li>Grace Lee</li>
+        <li>Hannah Brown</li>
+        <li>Ian Wilson</li>
+        <li>Jane Doe</li>
+      </ol>
+    </div>
+    <a href="greentech.html"
+       class="mt-6 bg-gradient-to-r from-green-500 to-emerald-400 hover:from-green-600 hover:to-emerald-500 text-white py-2 px-5 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 text-center">
+      Learn More →
+    </a>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card-glow bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-lg hover:shadow-blue-400/30 transition-all duration-500 flex flex-col justify-between animate-fadeUp" style="animation-delay: 0.4s;">
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-blue-300">EduConnect</h2>
+      <p class="mb-4 text-gray-200">A global hub connecting students and mentors through intelligent matching.</p>
+      <h3 class="font-semibold text-white mb-1">Team Members:</h3>
+      <ol class="list-decimal list-inside text-gray-300 text-sm space-y-1">
+        <li>Liam Scott</li>
+        <li>Emma Johnson</li>
+        <li>Noah Davis</li>
+        <li>Olivia Martinez</li>
+        <li>Ava Wilson</li>
+      </ol>
+    </div>
+    <a href="educonnect.html"
+       class="mt-6 bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 text-white py-2 px-5 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 text-center">
+      Learn More →
+    </a>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card-glow bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-lg hover:shadow-pink-400/30 transition-all duration-500 flex flex-col justify-between animate-fadeUp" style="animation-delay: 0.6s;">
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-pink-300">HealthSync</h2>
+      <p class="mb-4 text-gray-200">An AI-powered health tracker improving wellness through predictive analytics.</p>
+      <h3 class="font-semibold text-white mb-1">Team Members:</h3>
+      <ol class="list-decimal list-inside text-gray-300 text-sm space-y-1">
+        <li>Amelia Clark</li>
+        <li>Jacob Moore</li>
+        <li>Sophia Taylor</li>
+        <li>Daniel White</li>
+        <li>Lucas Perez</li>
+      </ol>
+    </div>
+    <a href="healthsync.html"
+       class="mt-6 bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 text-white py-2 px-5 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 text-center">
+      Learn More →
+    </a>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card-glow bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-lg hover:shadow-yellow-400/30 transition-all duration-500 flex flex-col justify-between animate-fadeUp" style="animation-delay: 0.8s;">
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-yellow-300">AgriNova</h2>
+      <p class="mb-4 text-gray-200">Empowering farmers with IoT-driven data for smarter, sustainable agriculture.</p>
+      <h3 class="font-semibold text-white mb-1">Team Members:</h3>
+      <ol class="list-decimal list-inside text-gray-300 text-sm space-y-1">
+        <li>Oliver Adams</li>
+        <li>Mia Roberts</li>
+        <li>Elijah Thomas</li>
+        <li>Charlotte Harris</li>
+        <li>Benjamin Lewis</li>
+      </ol>
+    </div>
+    <a href="agrinova.html"
+       class="mt-6 bg-gradient-to-r from-yellow-400 to-amber-300 hover:from-yellow-500 hover:to-amber-400 text-white py-2 px-5 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 text-center">
+      Learn More →
+    </a>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card-glow bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-lg hover:shadow-red-400/30 transition-all duration-500 flex flex-col justify-between animate-fadeUp" style="animation-delay: 1s;">
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-red-300">SafeRide</h2>
+      <p class="mb-4 text-gray-200">Revolutionizing urban transportation with smart route optimization and safety.</p>
+      <h3 class="font-semibold text-white mb-1">Team Members:</h3>
+      <ol class="list-decimal list-inside text-gray-300 text-sm space-y-1">
+        <li>Ella Rivera</li>
+        <li>Jack Cooper</li>
+        <li>Harper King</li>
+        <li>Henry Allen</li>
+        <li>Aria Scott</li>
+      </ol>
+    </div>
+    <a href="saferide.html"
+       class="mt-6 bg-gradient-to-r from-red-500 to-orange-400 hover:from-red-600 hover:to-orange-500 text-white py-2 px-5 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 text-center">
+      Learn More →
+    </a>
+  </div>
+
+  <!-- Card 7 -->
+  <div class="card-glow bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-lg hover:shadow-indigo-400/30 transition-all duration-500 flex flex-col justify-between animate-fadeUp" style="animation-delay: 1.2s;">
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-indigo-300">FinWise</h2>
+      <p class="mb-4 text-gray-200">Simplifying personal finance through AI-driven budgeting and smart investments.</p>
+      <h3 class="font-semibold text-white mb-1">Team Members:</h3>
+      <ol class="list-decimal list-inside text-gray-300 text-sm space-y-1">
+        <li>James Walker</li>
+        <li>Ella Young</li>
+        <li>Michael Turner</li>
+        <li>Chloe Baker</li>
+        <li>William Hall</li>
+      </ol>
+    </div>
+    <a href="finwise.html"
+       class="mt-6 bg-gradient-to-r from-indigo-500 to-violet-400 hover:from-indigo-600 hover:to-violet-500 text-white py-2 px-5 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 text-center">
+      Learn More →
+    </a>
+  </div>
+
+  <!-- Card 8 -->
+  <div class="card-glow bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-lg hover:shadow-teal-400/30 transition-all duration-500 flex flex-col justify-between animate-fadeUp" style="animation-delay: 1.4s;">
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-teal-300">AquaPure</h2>
+      <p class="mb-4 text-gray-200">Developing smart filtration systems for clean and affordable drinking water.</p>
+      <h3 class="font-semibold text-white mb-1">Team Members:</h3>
+      <ol class="list-decimal list-inside text-gray-300 text-sm space-y-1">
+        <li>Natalie Reed</li>
+        <li>Leo Torres</li>
+        <li>Zoey Foster</li>
+        <li>Ryan Brooks</li>
+        <li>Lily Ward</li>
+      </ol>
+    </div>
+    <a href="aquapure.html"
+       class="mt-6 bg-gradient-to-r from-teal-500 to-cyan-400 hover:from-teal-600 hover:to-cyan-500 text-white py-2 px-5 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 text-center">
+      Learn More →
+    </a>
+  </div>
+
+  <!-- Card 9 -->
+  <div class="card-glow bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-lg hover:shadow-lime-400/30 transition-all duration-500 flex flex-col justify-between animate-fadeUp" style="animation-delay: 1.6s;">
+    <div>
+      <h2 class="text-2xl font-bold mb-2 text-lime-300">FoodLoop</h2>
+      <p class="mb-4 text-gray-200">Reducing food waste by connecting restaurants and charities in real-time.</p>
+      <h3 class="font-semibold text-white mb-1">Team Members:</h3>
+      <ol class="list-decimal list-inside text-gray-300 text-sm space-y-1">
+        <li>Andrew Bell</li>
+        <li>Victoria Evans</li>
+        <li>Samuel Brooks</li>
+        <li>Ella Bennett</li>
+        <li>Jackson Hill</li>
+      </ol>
+    </div>
+    <a href="foodloop.html"
+       class="mt-6 bg-gradient-to-r from-lime-500 to-green-400 hover:from-lime-600 hover:to-green-500 text-white py-2 px-5 rounded-lg font-semibold transition-transform duration-300 transform hover:scale-105 text-center">
+      Learn More →
+    </a>
+  </div>
+
+</section>
+
+
+    <!-- Footer -->
+    <footer class="text-center mt-20 text-gray-300 text-sm">
+      <div class="w-full h-px bg-gradient-to-r from-transparent via-purple-500/40 to-transparent mb-4"></div>
+      © 2025 <span class="text-purple-400 font-semibold">PitchDeck</span> — Inspiring the Next Big Thing 🌟
+    </footer>
+
+  </div>
+
+  <!-- 🔧 Fix for back button showing old Learn button -->
+  <script>
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted || (performance.getEntriesByType("navigation")[0] && performance.getEntriesByType("navigation")[0].type === "back_forward")) {
+        window.location.reload();
+      }
+    });
+  </script>
+
+</body>
+</html>

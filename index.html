@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PitchHub - Startup Pitching Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  \<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+/>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <style>
+    /* Animations */
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-bounceIn { animation: bounceIn 0.3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate-fadeIn { animation: fadeIn 0.4s ease; }
+
+    @keyframes animate-gradient-bg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient-bg {
+      background-size: 400% 400%;
+      animation: animate-gradient-bg 15s ease infinite;
+    }
+
+    @keyframes animate-blob {
+      0%,100%{ transform: translate(0,0) scale(1); }
+      33%{ transform: translate(30px,-50px) scale(1.1); }
+      66%{ transform: translate(-20px,20px) scale(0.9); }
+    }
+    .animate-blob { animation: animate-blob 20s infinite; }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-3000 { animation-delay: 3s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+    .animation-delay-5000 { animation-delay: 5s; }
+
+    /* Hide scrollbars */
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50">
+
+  <!-- Navigation -->
+  <nav class="gradient-bg text-white shadow-lg fixed w-full z-50">
+    <div class="w-full mx-auto px-6">
+      <div class="flex justify-between items-center py-3">
+        <div class="flex items-center space-x-2">
+          <div class="text-2xl">🚀</div>
+          <h1 class="text-2xl font-bold"><a href="#" onclick="showSection('hero')">PitchDeck</a></h1>
+        </div>
+        <div class="hidden md:flex justify-center flex-grow">
+  <div class="flex items-center space-x-2">
+  <button onclick="window.location.href='page/browse.html'" class="nav-link px-5 py-2.5">Browse Ideas</button>
+  <button onclick="window.location.href='pitch.html'" class="nav-link px-5 py-2.5">Submit Pitch</button>
+  <button onclick="window.location.href='investor.html'" class="nav-link px-5 py-2.5">For Investors</button>
+  <button onclick="window.location.href='mentors.html'" class="nav-link px-5 py-2.5">Mentorship</button>
+  
+</div>
+
+        </div>
+        <div class="hidden md:flex items-center space-x-3">
+          <button class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors" onclick="window.location.href='login.html'">Login</button>
+          <button class="bg-purple-800 px-4 py-2 rounded-lg font-semibold hover:bg-purple-900 transition-colors" onclick="window.location.href='signup.html'">Sign Up</button>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow">
+    <!-- Hero Section -->
+<section id="hero" class="gradient-bg text-white py-20">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h2 class="text-5xl font-bold mb-6">Turn Your Ideas Into Reality</h2>
+    <p class="text-xl mb-8 max-w-3xl mx-auto">
+      Connect with investors, mentors, and collaborators. Showcase your startup ideas and get the funding and guidance you need to succeed.
+    </p>
+    <div class="flex justify-center space-x-4 mb-16">
+      <!-- Open Submit Pitch page -->
+      <button onclick="window.location.href='page/pitch.html'" 
+              class="bg-white text-purple-600 px-8 py-3 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
+        Submit Your Pitch
+      </button>
+      <!-- Open Browse Ideas page -->
+      <button onclick="window.location.href='page/browse.html'" 
+              class="border-2 border-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-white hover:text-purple-600 transition-colors">
+        Explore Ideas
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 hero-stats text-purple-100">
+      <div class="stats-card text-4xl font-bold">500+<div class="text-lg opacity-90 font-normal">Active Startups</div></div>
+      <div class="stats-card text-4xl font-bold">150+<div class="text-lg opacity-90 font-normal">Investors</div></div>
+      <div class="stats-card text-4xl font-bold">$2.5M+<div class="text-lg opacity-90 font-normal">Funded</div></div>
+    </div>
+  </div>
+</section>
+
+  </main>
+<!-- Floating Chat Button - Higher Up -->
+<a href="chat.html"
+   class="fixed right-6 bottom-28 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500
+          text-white p-3 rounded-full shadow-lg hover:scale-110 hover:shadow-2xl
+          transition-transform duration-300 flex items-center justify-center text-xl z-50">
+  💬
+</a>
+
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-8 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+      <div class="text-2xl font-bold">PitchDeck</div>
+      <div class="flex space-x-6">
+        <a href="index.html" class="hover:text-indigo-500 transition-colors">Home</a>
+        <a href="about.html" class="hover:text-indigo-500 transition-colors">About</a>
+        <a href="services.html" class="hover:text-indigo-500 transition-colors">Services</a>
+        <a href="contact.html" class="hover:text-indigo-500 transition-colors">Contact</a>
+      </div>
+     <div class="flex space-x-4">
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/yourprofile" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="p-2 bg-gray-700 rounded-full hover:bg-indigo-500 transition-all">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/in/yourprofile" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="p-2 bg-gray-700 rounded-full hover:bg-blue-600 transition-all">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/yourprofile" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="p-2 bg-gray-700 rounded-full hover:bg-pink-500 transition-all">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+    </div>
+    </div>
+    <div class="mt-6 text-center text-gray-400 text-sm">© 2025 PitchDeck. All rights reserved.</div>
+  </div>
+</footer>
+
+
+
+  <script>
+    // Section Show/Hide function
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(sec => sec.style.display = 'none');
+      const active = document.getElementById(sectionId);
+      if(active) active.style.display = 'block';
+    }
+  </script>
+
+
+<script>
+const pitchForm = document.getElementById('pitch-form');
+const successMessage = document.getElementById('success-message');
+
+pitchForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Collect form data
+  const formData = new FormData(pitchForm);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const res = await fetch('/api/submit-pitch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+
+    if(result.success){
+      pitchForm.style.display = 'none';
+      successMessage.classList.remove('hidden');
+    } else {
+      alert(result.message || 'Error submitting pitch');
+    }
+  } catch(err){
+    console.error('Error:', err);
+    alert('Server error. Please try again.');
+  }
+});
+</script>
+
+
+</body>
+</html>

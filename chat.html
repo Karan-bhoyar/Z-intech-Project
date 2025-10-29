@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple-Pink-Blue Chat</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-screen h-screen overflow-hidden">
+
+<!-- Full-screen gradient background -->
+<div class="absolute inset-0 bg-gradient-to-br from-purple-700 via-pink-500 to-blue-700"></div>
+
+<!-- Floating blurred shapes -->
+<div class="absolute top-10 left-10 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+<div class="absolute bottom-20 right-10 w-[30rem] h-[30rem] bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+<div class="absolute top-1/2 left-1/2 w-[40rem] h-[40rem] bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse"></div>
+
+<!-- Chat container -->
+<div class="relative z-10 w-full h-full flex flex-col">
+
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-purple-800 via-pink-600 to-blue-800 text-white p-5 flex justify-between items-center text-lg sticky top-0 z-20 shadow-md">
+    <h2 class="font-bold">💬 Startup Assistant Chat</h2>
+    <button onclick="window.location.href='index.html'" 
+      class="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 
+             text-white px-4 py-2 rounded-lg font-semibold 
+             shadow-md hover:shadow-xl hover:opacity-90 
+             transition duration-300">
+      ⬅ Back
+    </button>
+  </div>
+
+  <!-- Messages area -->
+  <div id="chatWindow" class="flex-1 p-6 overflow-y-auto text-lg text-white space-y-3 bg-black/20">
+    <!-- Chat messages will appear here -->
+  </div>
+
+  <!-- Typing indicator -->
+  <div id="typing" class="px-6 pb-2 text-sm text-gray-200 hidden">🤖 Bot is typing...</div>
+
+  <!-- Input -->
+  <form id="chatForm" class="flex border-t border-gray-600 bg-black/50 backdrop-blur-md sticky bottom-0 z-20">
+    <input id="chatInput" type="text" placeholder="Type your message..."
+      class="flex-1 p-4 text-lg bg-transparent placeholder-gray-300 text-white focus:outline-none focus:ring-2 focus:ring-pink-400" />
+    <button class="bg-pink-500 text-white px-6 text-lg hover:bg-pink-600 transition-colors">Send</button>
+  </form>
+</div>
+
+<script>
+const chatForm = document.getElementById("chatForm");
+const chatInput = document.getElementById("chatInput");
+const chatWindow = document.getElementById("chatWindow");
+const typing = document.getElementById("typing");
+
+chatForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+
+  // User bubble
+  chatWindow.innerHTML += `
+    <div class="flex justify-end">
+      <div class="bg-blue-500 text-white px-4 py-2 rounded-2xl max-w-[70%] shadow-lg">
+        <b>You:</b> ${msg}
+      </div>
+    </div>
+  `;
+  chatInput.value = "";
+  typing.classList.remove("hidden");
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+
+  try {
+    const res = await fetch("http://localhost:5000/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: msg }),
+    });
+    const data = await res.json();
+    typing.classList.add("hidden");
+
+    // Bot bubble
+    chatWindow.innerHTML += `
+      <div class="flex justify-start">
+        <div class="bg-pink-500 text-white px-4 py-2 rounded-2xl max-w-[70%] shadow-lg">
+          <b>Bot:</b> ${data.reply}
+        </div>
+      </div>
+    `;
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  } catch (err) {
+    typing.classList.add("hidden");
+    chatWindow.innerHTML += `
+      <div class="flex justify-start">
+        <div class="bg-red-500 text-white px-4 py-2 rounded-2xl max-w-[70%] shadow-lg">
+          <b>Bot:</b> Error connecting to server
+        </div>
+      </div>
+    `;
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+});
+</script>
+
+</body>
+</html>
