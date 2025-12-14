@@ -219,6 +219,17 @@ function initializeApp() {
 
 document.addEventListener('DOMContentLoaded', initializeApp);
 
+// Popup Form Functions
+function openForm() {
+    document.getElementById("registerPopup").classList.remove("hidden");
+}
+function closeForm() {
+    document.getElementById("registerPopup").classList.add("hidden");
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', initializeApp);
+
 // Expose
 window.showSection = showSection;
 window.filterPitches = filterPitches;
@@ -227,6 +238,139 @@ window.submitPitch = submitPitch;
 window.connectWithMentor = connectWithMentor;
 window.submitEntrepreneur = submitEntrepreneur;
 window.joinAsInvestor = joinAsInvestor;
+window.openForm = openForm;
+window.closeForm = closeForm;
+
+
+function openWebinarForm() {
+    document.getElementById("webinarFormPopup").classList.remove("hidden");
+    document.getElementById("webinarFormPopup").classList.add("flex");
+}
+
+function closeWebinarForm() {
+    document.getElementById("webinarFormPopup").classList.add("hidden");
+}
+
+function showWebinarSuccess() {
+    document.getElementById("webinarSuccessPopup").classList.remove("hidden");
+}
+
+function closeWebinarSuccess() {
+    document.getElementById("webinarSuccessPopup").classList.add("hidden");
+}
+
+document.getElementById("webinarForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    closeWebinarForm();
+    showWebinarSuccess();
+});
+
+
+const reserveBtn = document.getElementById("reserveBtn");
+const modal = document.getElementById("reserveModal");
+const closeBtn = document.querySelector(".close");
+
+reserveBtn.onclick = () => {
+  modal.style.display = "flex";
+};
+
+closeBtn.onclick = () => {
+  modal.style.display = "none";
+};
+
+window.onclick = (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
+document.getElementById("reserveForm").onsubmit = function(e) {
+  e.preventDefault();
+  alert("✅ Your spot has been reserved! Confirmation email sent.");
+  modal.style.display = "none";
+};
+
+document.getElementById("reserveForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = {
+    name: e.target[0].value,
+    email: e.target[1].value,
+    startup: e.target[2].value,
+    role: e.target[3].value,
+  };
+
+  const res = await fetch("http://localhost:5000/reserve", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (res.ok) {
+    alert("✅ Confirmation email sent to your inbox!");
+    document.getElementById("reserveModal").classList.add("hidden");
+  } else {
+    alert("❌ Something went wrong. Try again!");
+  }
+});
+
+
+
+// Expose
+window.showSection = showSection;
+window.filterPitches = filterPitches;
+window.viewPitch = viewPitch;
+window.submitPitch = submitPitch;
+window.connectWithMentor = connectWithMentor;
+window.submitEntrepreneur = submitEntrepreneur;
+window.joinAsInvestor = joinAsInvestor;
+
+function openForm() {
+  const popup = document.getElementById("registerPopup");
+  const successMsg = document.getElementById("successMsg");
+  const form = document.getElementById("registerForm");
+
+  popup.style.display = "flex";
+
+  // 🔥 RESET STATE
+  successMsg.style.display = "none";
+  form.style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("registerPopup").style.display = "none";
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+
+  const fullName = document.querySelector('[name="fullName"]').value;
+  const email = document.querySelector('[name="email"]').value;
+  const startupName = document.querySelector('[name="startupName"]').value;
+
+  fetch("http://localhost:5000/api/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      fullName,
+      email,
+      startupName
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      document.getElementById("successMsg").style.display = "block";
+    }
+  })
+  .catch(err => console.error("Register error:", err));
+}
+
+
+
+
 
 
 

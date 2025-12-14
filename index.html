@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PitchHub - Startup Pitching Portal</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  \<link
+  <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 />
@@ -53,36 +53,56 @@
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
 
-  <!-- Navigation -->
-  <nav class="gradient-bg text-white shadow-lg fixed w-full z-50">
-    <div class="w-full mx-auto px-6">
-      <div class="flex justify-between items-center py-3">
-        <div class="flex items-center space-x-2">
-          <div class="text-2xl">🚀</div>
-          <h1 class="text-2xl font-bold"><a href="#" onclick="showSection('hero')">PitchDeck</a></h1>
-        </div>
-        <div class="hidden md:flex justify-center flex-grow">
-  <div class="flex items-center space-x-2">
-  <button onclick="window.location.href='page/browse.html'" class="nav-link px-5 py-2.5">Browse Ideas</button>
-  <button onclick="window.location.href='pitch.html'" class="nav-link px-5 py-2.5">Submit Pitch</button>
-  <button onclick="window.location.href='investor.html'" class="nav-link px-5 py-2.5">For Investors</button>
-  <button onclick="window.location.href='mentors.html'" class="nav-link px-5 py-2.5">Mentorship</button>
   
-</div>
+ <nav class="text-white shadow-lg fixed top-0 left-0 w-full z-50">
+  <div class="w-full mx-auto px-6">
+    <div class="flex justify-between items-center py-3">
 
-        </div>
-        <div class="hidden md:flex items-center space-x-3">
-          <button class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors" onclick="window.location.href='login.html'">Login</button>
-          <button class="bg-purple-800 px-4 py-2 rounded-lg font-semibold hover:bg-purple-900 transition-colors" onclick="window.location.href='signup.html'">Sign Up</button>
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <div class="text-2xl">🚀</div>
+        <h1 class="text-2xl font-bold">
+          <a href="index.html">PitchDeck</a>
+        </h1>
+      </div>
 
+      <!-- Center Links -->
+      <div class="hidden md:flex justify-center flex-grow">
+        <div class="flex items-center space-x-2">
+          <a href="page/browse.html" class="nav-link px-5 py-2.5">Browse Ideas</a>
+          <a href="pitch.html" class="nav-link px-5 py-2.5">Submit Pitch</a>
+          <a href="investor.html" class="nav-link px-5 py-2.5">For Investors</a>
+          <a href="mentors.html" class="nav-link px-5 py-2.5">Mentorship</a>
         </div>
       </div>
+
+      <!-- Right Buttons -->
+    <div class="flex items-center space-x-3">
+
+  <!-- Login – WHITE -->
+  <a href="login.html"
+     class="px-4 py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition">
+    Login
+  </a>
+
+  <!-- Sign Up – PURPLE -->
+  <a href="signup.html"
+     class="px-4 py-2 rounded-lg bg-purple-600 text-white font-semibold hover:bg-purple-700 transition">
+    Sign Up
+  </a>
+
+</div>
     </div>
-  </nav>
+  </div>
+</nav>
+
+
 
   <main class="flex-grow">
     <!-- Hero Section -->
+     
 <section id="hero" class="gradient-bg text-white py-20">
+  
   <div class="max-w-7xl mx-auto px-4 text-center">
     <h2 class="text-5xl font-bold mb-6">Turn Your Ideas Into Reality</h2>
     <p class="text-xl mb-8 max-w-3xl mx-auto">
@@ -90,7 +110,9 @@
     </p>
     <div class="flex justify-center space-x-4 mb-16">
       <!-- Open Submit Pitch page -->
-      <button onclick="window.location.href='page/pitch.html'" 
+
+      
+      <button onclick="window.location.href='pitch.html'" 
               class="bg-white text-purple-600 px-8 py-3 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
         Submit Your Pitch
       </button>
@@ -117,49 +139,293 @@
   💬
 </a>
 
+<!-- Video Testimonials Section -->
+<section id="videos" 
+  class="bg-[url('360_F_644724742_ZyfYcGNXFo8qNCCHFUemAzVGQn2N8xbk.jpg')] bg-cover bg-center bg-no-repeat py-20">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+<h2 class="text-5xl font-extrabold text-white mb-4 relative overflow-hidden inline-block">
+  <span class="block animate-[slideIn_1s_ease-in-out] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-transparent bg-clip-text">
+    🎥 Founder Stories
+  </span>
+ 
+</h2>
+<p class="text-black font-medium max-w-2xl mx-auto mb-12 text-center text-lg leading-relaxed opacity-90">
+  The best pitches are born from stories — discover the faces behind innovation.
+</p>
+
+<style>
+@keyframes slideIn {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+</style>
+
+    <!-- Video Grid -->
+    <div class="grid gap-10 md:grid-cols-3">
+
+      <!-- Video 1 -->
+      <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 overflow-hidden">
+        <div class="relative">
+          <iframe class="w-full h-56" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="Founder Story 1" allowfullscreen></iframe>
+        </div>
+        <div class="p-6 text-left">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Priya Sharma — GreenWave</h3>
+          <p class="text-gray-600 text-sm">
+            “We turned our eco-friendly idea into a funded reality with guidance from top mentors on PitchDeck.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 overflow-hidden">
+        <div class="relative">
+          <iframe class="w-full h-56" src="https://www.youtube.com/embed/tgbNymZ7vqY" 
+            title="Founder Story 2" allowfullscreen></iframe>
+        </div>
+        <div class="p-6 text-left">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Ravi Patel — FinEdge</h3>
+          <p class="text-gray-600 text-sm">
+            “The investor sessions gave us clarity and exposure that changed our growth path forever.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 overflow-hidden">
+        <div class="relative">
+          <iframe class="w-full h-56" src="https://www.youtube.com/embed/ysz5S6PUM-U" 
+            title="Investor Testimonial" allowfullscreen></iframe>
+        </div>
+        <div class="p-6 text-left">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Amit Verma — Vision Capital</h3>
+          <p class="text-gray-600 text-sm">
+            “Through PitchDeck, I’ve discovered incredible startups with strong potential — it's my go-to source now.”
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Upcoming Events Section -->
+<section id="events" 
+  class="bg-[url('pngtree-business-startup-blue-contemporary-tech-image_627543.jpg')] bg-cover bg-center bg-no-repeat py-20">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    
+    <h2 class="text-4xl font-extrabold text-center mb-4 text-blue-900">
+  <span class="block animate-[slideIn_1s_ease-in-out]">
+    📅 Upcoming Events
+  </span>
+</h2>
+
+
+    <p class="text-black font-medium max-w-2xl mx-auto mb-12 text-center text-lg leading-relaxed opacity-90">
+      Join <span class="text-black font-semibold">live pitch sessions</span>, 
+      <span class="text-black font-semibold">networking meetups</span>, and 
+      <span class="text-black font-semibold">exclusive investor panels</span> 
+      to boost your startup journey.
+    </p>
+
+    <style>
+    @keyframes slideIn {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    </style>
+
+    <!-- Events Grid -->
+    <div class="grid gap-8 md:grid-cols-2 justify-center max-w-4xl mx-auto">
+
+
+      
+      <!-- Event 1 -->
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" 
+             alt="Pitch Event" class="rounded-lg mb-4 w-full h-40 object-cover">
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Startup Demo Day 2025</h3>
+        <p class="text-gray-500 mb-4">📆 31st December 2025 | 🕒 5:00 PM IST</p>
+        <p class="text-gray-700 mb-6">
+          Present your startup to top-tier investors and get real-time feedback on your pitch.
+        </p>
+        <button onclick="openForm()" 
+    class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-5 py-2 rounded-lg shadow-md hover:opacity-90 transition">
+    Register Now
+</button>
+
+      </div>
+
+      <!-- Event 2 -->
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" 
+             alt="Webinar" class="rounded-lg mb-4 w-full h-40 object-cover">
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Investor Connect Webinar</h3>
+        <p class="text-gray-500 mb-4">📆 31st December2025 | 🕒 6:30 PM IST</p>
+        <p class="text-gray-700 mb-6">
+          Learn what investors look for in a pitch and how to make your deck stand out.
+        </p>
+    <button 
+  class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-5 py-2 rounded-lg font-medium shadow-md hover:opacity-90 transition"
+  onclick="window.open('https://wa.me/9028775023?text=I%20want%20to%20join%20the%20community%20%F0%9F%91%8D')">
+  Join Community
+    </button>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- 🌈 Testimonials + Community Section (Merged with Animated Background) -->
+<section id="success-community" class="relative py-24 overflow-hidden">
+  
+  <!-- Animated Gradient Background -->
+  <style>
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+
+  <div class="absolute inset-0 bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 bg-[length:200%_200%] animate-[gradientFlow_15s_ease_infinite] opacity-90"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 text-center text-white space-y-32">
+
+
+    <!-- 🌟 Success Stories -->
+    <div>
+      <div class="pb-8 mb-8">
+
+        
+
+      <h2 class="text-5xl font-extrabold mb-6">
+        <span class="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-transparent bg-clip-text animate-pulse">
+          🌟 Success Stories
+        </span>
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto mb-16 text-lg">
+        Founders and investors who transformed ideas into reality with 
+        <span class="text-purple-400 font-semibold">PitchDeck</span>.
+      </p>
+
+      <div class="grid gap-10 md:grid-cols-3">
+        <!-- Card 1 -->
+        <div class="group relative bg-white/10 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-lg hover:shadow-purple-500/30 transition transform hover:-translate-y-2">
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-pink-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
+          <div class="text-6xl text-purple-400 mb-4 opacity-80 group-hover:opacity-100 transition">“</div>
+          <p class="text-gray-200 mb-8 italic">
+            Thanks to PitchDeck, we connected with two major investors and raised our seed round within weeks!
+          </p>
+          <div class="flex items-center justify-center space-x-4">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-14 h-14 rounded-full border-2 border-purple-400 shadow-md" alt="">
+            <div class="text-left">
+              <h4 class="font-semibold text-white">Priya Sharma</h4>
+              <p class="text-gray-400 text-sm">Founder, GreenWave</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group relative bg-white/10 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-lg hover:shadow-pink-500/30 transition transform hover:-translate-y-2">
+          <div class="absolute inset-0 bg-gradient-to-br from-pink-600/10 to-indigo-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
+          <div class="text-6xl text-pink-400 mb-4 opacity-80 group-hover:opacity-100 transition">“</div>
+          <p class="text-gray-200 mb-8 italic">
+            The mentorship and exposure gave our startup the clarity we needed to refine our pitch and stand out.
+          </p>
+          <div class="flex items-center justify-center space-x-4">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" class="w-14 h-14 rounded-full border-2 border-pink-400 shadow-md" alt="">
+            <div class="text-left">
+              <h4 class="font-semibold text-white">Ravi Patel</h4>
+              <p class="text-gray-400 text-sm">Co-founder, FinEdge</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="group relative bg-white/10 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-lg hover:shadow-blue-500/30 transition transform hover:-translate-y-2">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
+          <div class="text-6xl text-blue-400 mb-4 opacity-80 group-hover:opacity-100 transition">“</div>
+          <p class="text-gray-200 mb-8 italic">
+            As an investor, I discovered high-potential startups here. PitchDeck is my go-to platform now!
+          </p>
+          <div class="flex items-center justify-center space-x-4">
+            <img src="https://randomuser.me/api/portraits/men/31.jpg" class="w-14 h-14 rounded-full border-2 border-blue-400 shadow-md" alt="">
+            <div class="text-left">
+              <h4 class="font-semibold text-white">Amit Verma</h4>
+              <p class="text-gray-400 text-sm">Investor, Vision Capital</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    
+  
+
+
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-white py-8 mt-auto">
+<footer class="bg-gray-900 text-white py-8  bottom-0 w-full">
+
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+      
       <div class="text-2xl font-bold">PitchDeck</div>
+
       <div class="flex space-x-6">
         <a href="index.html" class="hover:text-indigo-500 transition-colors">Home</a>
         <a href="about.html" class="hover:text-indigo-500 transition-colors">About</a>
         <a href="services.html" class="hover:text-indigo-500 transition-colors">Services</a>
         <a href="contact.html" class="hover:text-indigo-500 transition-colors">Contact</a>
       </div>
-     <div class="flex space-x-4">
-  <!-- Facebook -->
-  <a href="https://www.facebook.com/yourprofile" 
-     target="_blank" 
-     rel="noopener noreferrer"
-     class="p-2 bg-gray-700 rounded-full hover:bg-indigo-500 transition-all">
-    <i class="fab fa-facebook-f"></i>
-  </a>
 
-  <!-- LinkedIn -->
-  <a href="https://www.linkedin.com/in/yourprofile" 
-     target="_blank" 
-     rel="noopener noreferrer"
-     class="p-2 bg-gray-700 rounded-full hover:bg-blue-600 transition-all">
-    <i class="fab fa-linkedin-in"></i>
-  </a>
+      <div class="flex space-x-4">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/yourprofile" 
+           target="_blank" 
+           class="p-2 bg-gray-700 rounded-full hover:bg-indigo-500 transition-all">
+          <i class="fab fa-facebook-f"></i>
+        </a>
 
-  <!-- Instagram -->
-  <a href="https://www.instagram.com/yourprofile" 
-     target="_blank" 
-     rel="noopener noreferrer"
-     class="p-2 bg-gray-700 rounded-full hover:bg-pink-500 transition-all">
-    <i class="fab fa-instagram"></i>
-  </a>
-</div>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/yourprofile" 
+           target="_blank"
+           class="p-2 bg-gray-700 rounded-full hover:bg-blue-600 transition-all">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/yourprofile" 
+           target="_blank"
+           class="p-2 bg-gray-700 rounded-full hover:bg-pink-500 transition-all">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
 
     </div>
+
+    <div class="mt-6 text-center text-gray-400 text-sm">
+      © 2025 PitchDeck. All rights reserved.
     </div>
-    <div class="mt-6 text-center text-gray-400 text-sm">© 2025 PitchDeck. All rights reserved.</div>
   </div>
 </footer>
+
 
 
 
@@ -207,6 +473,113 @@ pitchForm.addEventListener('submit', async (e) => {
 });
 </script>
 
+<!-- Popup Background -->
+<div id="registerPopup"
+  class="fixed inset-0 bg-black/60 backdrop-blur-md hidden flex justify-center items-center z-50">
+
+  <!-- Popup Box -->
+  <div class="bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600
+    w-full max-w-md p-8 rounded-3xl shadow-2xl relative text-white">
+
+    <!-- Close Button -->
+    <button onclick="closeForm()"
+      class="absolute top-3 right-3 text-white text-xl font-bold">
+      ✖
+    </button>
+
+    <h2 class="text-3xl font-extrabold mb-4 text-center">
+      Register Now 🚀
+    </h2>
+
+    <!-- ✅ SINGLE FORM (IMPORTANT) -->
+    <form id="registerForm" class="space-y-4" onsubmit="handleSubmit(event)">
+
+      <div>
+  <label class="font-semibold">Full Name</label>
+  <input type="text"
+    name="fullName"   
+    required
+    class="w-full mt-1 px-4 py-2 rounded-xl bg-white/20 text-white"
+    placeholder="Enter your full name">
+</div>
+
+
+    <div>
+  <label class="font-semibold">Email</label>
+  <input type="email"
+    name="email"        
+    required
+    class="w-full mt-1 px-4 py-2 rounded-xl bg-white/20 text-white"
+    placeholder="example@mail.com">
+</div>
+
+
+      <div>
+  <label class="font-semibold">Startup Name</label>
+  <input type="text"
+    name="startupName"  
+    class="w-full mt-1 px-4 py-2 rounded-xl bg-white/20 text-white"
+    placeholder="Your startup name">
+</div>
+
+
+      <button type="submit"
+        class="w-full bg-white/90 text-purple-700 py-3 rounded-xl font-bold">
+        Submit Registration
+      </button>
+    </form>
+
+    <!-- ✅ SUCCESS MESSAGE  -->
+    <p id="successMsg"
+      style="display:none;"
+      class="text-center text-green-200 font-semibold mt-4">
+      ✅ Registration Successful!
+    </p>
+
+  </div>
+</div>
+
+<style>
+@keyframes scaleUp {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.animate-scaleUp { animation: scaleUp 0.3s ease-out; }
+</style>
+
+<!-- JOIN WEBINAR FORM POPUP -->
+<div id="webinarFormPopup" class="fixed inset-0 hidden items-center justify-center bg-black/40 backdrop-blur-sm z-[9999]">
+  <div class="bg-white/90 rounded-2xl shadow-2xl p-8 w-[350px] border border-purple-300 animate-scaleUp">
+      <h2 class="text-2xl font-bold text-purple-700 text-center mb-3">Join Webinar 🎙️</h2>
+      <p class="text-center text-gray-700 mb-5">Fill the details to join the live event</p>
+
+      <form id="webinarForm" class="space-y-4">
+          <input type="text" placeholder="Full Name"
+            class="w-full p-3 rounded-xl border border-purple-300 focus:ring-2 focus:ring-purple-500 outline-none">
+          
+          <input type="email" placeholder="Email Address"
+            class="w-full p-3 rounded-xl border border-purple-300 focus:ring-2 focus:ring-purple-500 outline-none">
+
+          <input type="text" placeholder="Topic of Interest"
+            class="w-full p-3 rounded-xl border border-purple-300 focus:ring-2 focus:ring-purple-500 outline-none">
+
+          <button class="w-full bg-purple-600 text-white font-semibold py-3 rounded-xl hover:bg-purple-700 transition">
+              Join Now
+          </button>
+      </form>
+
+      <button onclick="closeWebinarForm()" 
+        class="mt-4 w-full bg-gray-200 text-gray-700 py-2 rounded-xl hover:bg-gray-300">
+        Close
+      </button>
+  </div>
+</div>
+
+
+
+
 
 </body>
+
+
 </html>

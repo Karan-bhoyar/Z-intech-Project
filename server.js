@@ -5,14 +5,24 @@ const path = require("path");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 require("dotenv").config();
+const registerRoutes = require("./routes/registerRoutes");
 
 // ---------------------- APP INIT ----------------------
 const app = express();
+
+app.use(express.json());
+
+
+
+// ---------------------- APP INIT ----------------------
+
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/api", registerRoutes);
 
 // Serve frontend static files
 app.use(express.static(path.join(__dirname)));
@@ -298,3 +308,43 @@ app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`🔄 Active Provider: ${process.env.PROVIDER || "none"}`);
 });
+
+// ----------------------email----------------------
+
+const nodemailer = require("nodemailer");
+app.post("/reserve", async (req, res) => {
+  const { name, email, startup, role } = req.body;
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    await transporter.sendMail({
+      from: `"Startup Events" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "✅ Your Spot is Reserved!",
+      html: `
+        <h2>Hello ${name},</h2>
+        <p>Your spot for <b>Founder Networking Night</b> has been successfully reserved.</p>
+        <p><b>Startup:</b> ${startup || "N/A"}</p>
+        <p><b>Role:</b> ${role}</p>
+        <p><b>Date:</b> 20 November 2025</p>
+        <p><b>Time:</b> 7:00 PM IST</p>
+        <br/>
+        <p>🚀 See you at the event!</p>
+      `
+    });
+
+    res.status(200).json({ success: true });
+  } catch (err) {
+    res.status(500).json({ success: false });
+  }
+});
+
+
+

@@ -9,7 +9,21 @@
 <body class="w-screen h-screen overflow-hidden">
 
 <!-- Full-screen gradient background -->
-<div class="absolute inset-0 bg-gradient-to-br from-purple-700 via-pink-500 to-blue-700"></div>
+<!-- Full-screen background image with gradient overlay -->
+<div class="absolute inset-0">
+  <!-- Background image -->
+ <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80" 
+     alt="background" class="w-full h-full object-cover" />
+
+     class="w-full h-full object-cover" />
+
+       alt="background" 
+       class="w-full h-full object-cover" />
+
+  <!-- Gradient overlay -->
+  
+</div>
+
 
 <!-- Floating blurred shapes -->
 <div class="absolute top-10 left-10 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
@@ -19,17 +33,23 @@
 <!-- Chat container -->
 <div class="relative z-10 w-full h-full flex flex-col">
 
-  <!-- Header -->
-  <div class="bg-gradient-to-r from-purple-800 via-pink-600 to-blue-800 text-white p-5 flex justify-between items-center text-lg sticky top-0 z-20 shadow-md">
-    <h2 class="font-bold">💬 Startup Assistant Chat</h2>
-    <button onclick="window.location.href='index.html'" 
-      class="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 
-             text-white px-4 py-2 rounded-lg font-semibold 
-             shadow-md hover:shadow-xl hover:opacity-90 
-             transition duration-300">
-      ⬅ Back
-    </button>
-  </div>
+  <!-- Sleek Minimal Header -->
+<header class="backdrop-blur-md bg-black/40 border-b border-white/10 
+               flex items-center justify-between px-5 py-3 sticky top-0 z-20 shadow-sm">
+  <h2 class="text-white text-lg font-semibold tracking-wide flex items-center space-x-2">
+    <span class="text-pink-400 text-xl">💬</span>
+    <span>Startup Chat</span>
+  </h2>
+
+  <button onclick="window.location.href='index.html'" 
+    class="text-sm bg-gradient-to-r from-pink-500 to-purple-600 
+           text-white px-3 py-1.5 rounded-md shadow-md 
+           hover:from-purple-600 hover:to-pink-500 hover:scale-105
+           transition-all duration-300">
+    ← Back
+  </button>
+</header>
+
 
   <!-- Messages area -->
   <div id="chatWindow" class="flex-1 p-6 overflow-y-auto text-lg text-white space-y-3 bg-black/20">
