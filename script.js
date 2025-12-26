@@ -374,3 +374,74 @@ function handleSubmit(e) {
 
 
 
+// ================= SIGNUP =================
+document.getElementById("signupForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const user = {
+    username: document.getElementById("username").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value
+  };
+
+  const res = await fetch("http://localhost:5000/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user)
+  });
+
+  const data = await res.json();
+
+  if (res.ok) {
+    document.getElementById("successMessage").style.display = "block";
+    setTimeout(() => window.location.href = "login.html", 2000);
+  } else {
+    alert(data.message);
+  }
+});
+
+
+// ================= LOGIN =================
+document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const user = {
+    username: document.getElementById("username").value,
+    password: document.getElementById("password").value
+  };
+
+  const res = await fetch("http://localhost:5000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user)
+  });
+
+  const data = await res.json();
+
+  if (res.ok) {
+    // ✅ CREATE PROFILE (SAVE USER)
+    localStorage.setItem("user", JSON.stringify({
+      id: data.id,
+      username: data.username,
+      email: data.email
+    }));
+
+    document.getElementById("successMessage").style.display = "block";
+    setTimeout(() => window.location.href = "index.html", 1000);
+  } else {
+    alert(data.message);
+  }
+});
+
+
+// ================= PROFILE LOAD =================
+function loadProfile() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  document.getElementById("profileUsername").innerText = user.username;
+  document.getElementById("profileEmail").innerText = user.email;
+}

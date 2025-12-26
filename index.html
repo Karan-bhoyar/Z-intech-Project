@@ -75,23 +75,52 @@
           <a href="mentors.html" class="nav-link px-5 py-2.5">Mentorship</a>
         </div>
       </div>
+<!-- Right Auth Area -->
+<div id="authArea" class="flex items-center space-x-3 relative">
 
-      <!-- Right Buttons -->
-    <div class="flex items-center space-x-3">
+  <!-- LOGIN / SIGNUP -->
+  <div id="loginButtons" class="flex items-center space-x-3">
+    <a href="login.html"
+       class="px-4 py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition">
+      Login
+    </a>
 
-  <!-- Login – WHITE -->
-  <a href="login.html"
-     class="px-4 py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition">
-    Login
-  </a>
+    <a href="signup.html"
+       class="px-4 py-2 rounded-lg bg-purple-600 text-white font-semibold hover:bg-purple-700 transition">
+      Sign Up
+    </a>
+  </div>
 
-  <!-- Sign Up – PURPLE -->
-  <a href="signup.html"
-     class="px-4 py-2 rounded-lg bg-purple-600 text-white font-semibold hover:bg-purple-700 transition">
-    Sign Up
-  </a>
+  <!-- PROFILE (hidden by default) -->
+  <div id="profileBox" class="hidden relative">
+    <button id="profileBtn"
+      class="flex items-center space-x-2 bg-white text-black px-3 py-2 rounded-lg shadow hover:bg-gray-100 transition">
+
+      <img src="image.jpg"
+           class="w-8 h-8 rounded-full object-cover">
+
+      <span id="profileName" class="text-sm font-semibold"></span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+
+    <!-- Dropdown -->
+    <div id="profileDropdown"
+      class="hidden absolute right-0 mt-2 w-44 bg-white text-black rounded-lg shadow-lg overflow-hidden">
+
+      <a href="admin.html"
+         class="block px-4 py-2 hover:bg-gray-100">
+        Dashboard
+      </a>
+
+      <button onclick="logout()"
+        class="w-full text-left px-4 py-2 hover:bg-gray-100">
+        Logout
+      </button>
+    </div>
+  </div>
 
 </div>
+
     </div>
   </div>
 </nav>
@@ -141,7 +170,7 @@
 
 <!-- Video Testimonials Section -->
 <section id="videos" 
-  class="bg-[url('360_F_644724742_ZyfYcGNXFo8qNCCHFUemAzVGQn2N8xbk.jpg')] bg-cover bg-center bg-no-repeat py-20">
+  class="bg-[url('image.jpg')] bg-cover bg-center bg-no-repeat py-20">
   <div class="max-w-7xl mx-auto px-6 text-center">
 <h2 class="text-5xl font-extrabold text-white mb-4 relative overflow-hidden inline-block">
   <span class="block animate-[slideIn_1s_ease-in-out] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-transparent bg-clip-text">
@@ -212,7 +241,7 @@
 
 <!-- Upcoming Events Section -->
 <section id="events" 
-  class="bg-[url('pngtree-business-startup-blue-contemporary-tech-image_627543.jpg')] bg-cover bg-center bg-no-repeat py-20">
+  class="bg-[url('image2.jpg')] bg-cover bg-center bg-no-repeat py-20">
   <div class="max-w-7xl mx-auto px-6 text-center">
     
     <h2 class="text-4xl font-extrabold text-center mb-4 text-blue-900">
@@ -370,18 +399,11 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-    
-  
-
-
+</section>
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-white py-8  bottom-0 w-full">
+<footer class="bg-gray-900 text-white py-8 w-full">
+
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
@@ -575,9 +597,40 @@ pitchForm.addEventListener('submit', async (e) => {
   </div>
 </div>
 
+<script>
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  const loginButtons = document.getElementById("loginButtons");
+  const profileBox = document.getElementById("profileBox");
+  const profileName = document.getElementById("profileName");
+  const profileBtn = document.getElementById("profileBtn");
+  const profileDropdown = document.getElementById("profileDropdown");
 
+  // If logged in
+  if (user) {
+    loginButtons.classList.add("hidden");
+    profileBox.classList.remove("hidden");
+    profileName.innerText = user.name || user.email || "User";
+  }
 
+  // Toggle dropdown
+  profileBtn?.addEventListener("click", () => {
+    profileDropdown.classList.toggle("hidden");
+  });
+
+  // Logout
+  function logout() {
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
+  }
+
+  // Close dropdown on outside click
+  document.addEventListener("click", (e) => {
+    if (!profileBox.contains(e.target)) {
+      profileDropdown?.classList.add("hidden");
+    }
+  });
+</script>
 
 </body>
 

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            float: "float 6s ease-in-out infinite",
+            glow: "glow 2s ease-in-out infinite"
+          },
+          keyframes: {
+            float: {
+              "0%, 100%": { transform: "translateY(0)" },
+              "50%": { transform: "translateY(-10px)" }
+            },
+            glow: {
+              "0%, 100%": { boxShadow: "0 0 20px rgba(139,92,246,0.6)" },
+              "50%": { boxShadow: "0 0 40px rgba(59,130,246,0.9)" }
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-[#0b0f1a] min-h-screen text-white overflow-x-hidden">
+
+<!-- Background Glow -->
+<div class="fixed inset-0 -z-10">
+  <div class="absolute top-0 left-0 w-96 h-96 bg-purple-600 opacity-30 blur-[120px]"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 opacity-30 blur-[120px]"></div>
+</div>
+
+<div class="max-w-7xl mx-auto p-6">
+
+  <!-- Header -->
+  <div class="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 mb-10 animate-float">
+    <h1 class="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+      Admin Control Room 🚀
+    </h1>
+    <p class="text-gray-300 mt-2">
+      Real-time pitch & lead intelligence
+    </p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex gap-6 mb-10">
+    <button onclick="loadPitches()"
+      class="px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-purple-600 to-pink-600 shadow-xl hover:scale-110 transition animate-glow">
+      🚀 Pitch Form
+    </button>
+
+    <button onclick="loadLeads()"
+      class="px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-blue-600 to-cyan-600 shadow-xl hover:scale-110 transition animate-glow">
+      🎓 MentorVerse
+    </button>
+  </div>
+
+  <!-- Data -->
+  <div id="data" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="col-span-full text-center text-gray-400 text-lg">
+      Select a tab to unleash data ⚡
+    </div>
+  </div>
+
+</div>
+
+<script>
+async function loadPitches() {
+  const res = await fetch("/api/pitches");
+  const data = await res.json();
+  const container = document.getElementById("data");
+  container.innerHTML = "";
+
+  data.forEach(p => {
+    container.innerHTML += `
+      <div class="group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:scale-105 hover:border-purple-400 transition-all duration-300">
+        <h3 class="text-xl font-bold text-purple-400 mb-2">${p.company_name}</h3>
+        <p class="text-gray-300"><b>Founder:</b> ${p.founder_name}</p>
+        <p class="text-gray-300"><b>Email:</b> ${p.email}</p>
+        <p class="text-gray-300"><b>Industry:</b> ${p.industry}</p>
+      </div>
+    `;
+  });
+}
+
+async function loadLeads() {
+  const res = await fetch("/api/leads");
+  const data = await res.json();
+  const container = document.getElementById("data");
+  container.innerHTML = "";
+
+  data.forEach(l => {
+    container.innerHTML += `
+      <div class="group backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 hover:scale-105 hover:border-blue-400 transition-all duration-300">
+        <h3 class="text-xl font-bold text-blue-400 mb-2">${l.name}</h3>
+        <p class="text-gray-300"><b>Email:</b> ${l.email}</p>
+        <p class="text-gray-300"><b>Profession:</b> ${l.profession}</p>
+        <p class="text-gray-300"><b>Goal:</b> ${l.goal}</p>
+      </div>
+    `;
+  });
+}
+</script>
+
+</body>
+</html>

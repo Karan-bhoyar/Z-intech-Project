@@ -131,46 +131,75 @@ app.post("/api/contact", async (req, res) => {
 
 // ---------------------- ROUTES ----------------------
 
-// Home page
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-// ---------------------- AUTH ROUTES ----------------------
 app.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const existingUser = await User.findOne({ email });
-    if (existingUser)
+
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: "All fields required" });
+    }
+
+    const exists = await User.findOne({
+      $or: [{ email }, { username }]
+    });
+
+    if (exists) {
       return res.status(400).json({ message: "User already exists" });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, email, password: hashedPassword });
-    await newUser.save();
 
-    res.json({ message: "Signup successful!" });
+    await User.create({
+      username,
+      email,
+      password: hashedPassword
+    });
+
+    res.json({ success: true, message: "Signup successful" });
+
   } catch (err) {
-    console.error("❌ Signup Error:", err);
+    console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 });
 
+// ================= LOGIN =================
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
+
     const user = await User.findOne({ username });
-    if (!user) return res.status(400).json({ message: "User not found" });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
+    if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
+    }
 
-    res.json({ message: "Login successful!" });
+    // ✅ SEND PROFILE DATA
+    res.json({
+      success: true,
+      username: user.username,
+      email: user.email,
+      id: user._id
+    });
+
   } catch (err) {
-    console.error("❌ Login Error:", err);
     res.status(500).json({ message: "Server error" });
   }
 });
+
+// ================= PROFILE =================
+app.get("/profile/:id", async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+  if (!user) return res.status(404).json({ message: "Not found" });
+  res.json(user);
+});
+
+
+
 
 // ---------------------- PITCH ROUTES ----------------------
 app.post("/api/submit-pitch", async (req, res) => {
@@ -348,3 +377,17 @@ app.post("/reserve", async (req, res) => {
 
 
 
+app.get("/api/pitches", async (req, res) => {
+  const pitches = await Pitch.find().sort({ submitted_at: -1 });
+  res.json(pitches);
+});
+
+
+app.get("/api/leads", async (req, res) => {
+  try {
+    const leads = await MentorContact.find().sort({ createdAt: -1 });
+    res.json(leads);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching leads" });
+  }
+});
